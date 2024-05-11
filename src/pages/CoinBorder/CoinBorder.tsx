@@ -2,7 +2,9 @@ import React from "react";
 import CoinBorderStyle from "./CoinBorder.style";
 import DataTable from "../../components/DataTable";
 
-interface CoinBorderProps {}
+interface CoinBorderProps { }
+
+
 
 const CoinBorder: React.FC<CoinBorderProps> = ({}) => {
   const columns = [
