@@ -1,9 +1,7 @@
 import { api } from "../core/service";
 
-export const getAllTxData = ({}) => {
-  return api.service
-    .get("/delightlabs-fe-hometest-mockdata.json")
-    .then((response) => {
-      return response && response.data;
-    });
+export const getAllCoinList = () => {
+  return api.service.get("/coins/list").then((response) => {
+    return response && response.data;
+  });
 };

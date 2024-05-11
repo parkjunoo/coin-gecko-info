@@ -1,30 +1,25 @@
-import React, { Children } from "react";
+import React, { Children, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Theme } from "@radix-ui/themes";
-import MainLayoutStyle from "./MainLayout.style";
+import { Container } from "./MainLayout.style";
 import * as Tabs from "@radix-ui/react-tabs";
 import "@radix-ui/themes/styles.css";
+import { getAllCoinList } from "../core/api";
+import Header from "../components/Header";
+import { Outlet } from "react-router-dom";
+interface MainLayoutProps {}
 
-interface MainLayoutProps {
-  children?: React.ReactNode;
-}
+const MainLayout: React.FC<MainLayoutProps> = ({}: MainLayoutProps) => {
+  // const [allList, setAllList] = useState([]);
+  // useEffect(() => {
+  //   getAllCoinList();
+  // }, []);
 
-const MainLayout: React.FC<MainLayoutProps> = ({
-  children,
-}: MainLayoutProps) => {
   return (
-    <MainLayoutStyle.Container>
-      <Theme>
-        <Tabs.Root defaultValue="tab1" orientation="vertical">
-          <Tabs.List aria-label="tabs example">
-            <Tabs.Trigger value="tab1">One</Tabs.Trigger>
-            <Tabs.Trigger value="tab2">Two</Tabs.Trigger>
-            <Tabs.Trigger value="tab3">Three</Tabs.Trigger>
-          </Tabs.List>
-        </Tabs.Root>
-        {children}
-      </Theme>
-    </MainLayoutStyle.Container>
+    <Container>
+      <Header />
+      <Outlet />
+    </Container>
   );
 };
 

@@ -12,6 +12,7 @@ class Service {
   constructor(baseUrl: string) {
     this.axiosInstance = axios.create({
       timeout: 15000,
+      baseURL: baseUrl,
     });
     this.axiosInstance.interceptors.request.use((config: any) => {
       return config;

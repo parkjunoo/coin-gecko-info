@@ -1,9 +1,13 @@
-import React from "react";
 import Router from "./Router";
-import styled from "styled-components";
 import { Theme } from "@radix-ui/themes";
 function App() {
-  return <Router />;
+  return (
+    <div className="h-full w-full">
+      <Theme>
+        <Router />
+      </Theme>
+    </div>
+  );
 }
 
 export default App;
