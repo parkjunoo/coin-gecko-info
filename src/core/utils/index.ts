@@ -9,3 +9,4 @@ export function formatCurrency(value: number, currency: string): string {
 
     return formatter.format(value);
 }
+

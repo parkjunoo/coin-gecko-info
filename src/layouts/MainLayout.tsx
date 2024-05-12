@@ -10,15 +10,6 @@ import { Outlet } from 'react-router-dom';
 interface MainLayoutProps {}
 
 const MainLayout: React.FC<MainLayoutProps> = ({}: MainLayoutProps) => {
-  const [allList, setAllList] = useState([]);
-  useEffect(() => {
-    getAllCoinList({
-      vs_currency: 'usd',
-    }).then((res: any) => {
-      console.log(res);
-    });
-  }, []);
-
   return (
     <Container>
       <Header />

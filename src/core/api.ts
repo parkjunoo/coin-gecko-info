@@ -5,7 +5,7 @@ interface GetAllCoinListParams {
   order?: string;
   per_page?: number;
   page?: number;
-  sparkline?: boolean;
+  price_change_percentage?: string;
 }
 
 export const getAllCoinList = ({
@@ -13,15 +13,15 @@ export const getAllCoinList = ({
   order,
   per_page,
   page,
-  sparkline,
+  price_change_percentage,
 }: GetAllCoinListParams) => {
   return api.service
-    .get('/coins/markeks', {
+    .get('/coins/markets', {
       vs_currency,
       order,
       per_page,
       page,
-      sparkline,
+      price_change_percentage,
     })
     .then((response) => {
       return response && response.data;
