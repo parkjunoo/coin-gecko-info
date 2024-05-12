@@ -1,10 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Table } from '@radix-ui/themes';
+import { StarIcon, StarFilledIcon } from '@radix-ui/react-icons';
+
 interface DataTableProps {
   columns: Column[];
   rows: any;
-  children: any;
 }
 
 interface Column {
@@ -14,7 +14,7 @@ interface Column {
   width?: string;
 }
 
-const DataTable: React.FC<DataTableProps> = ({ columns, rows, children }) => {
+const DataTable: React.FC<DataTableProps> = ({ columns, rows }) => {
   return (
     <Table.Root variant="surface">
       <Table.Header>
@@ -32,18 +32,42 @@ const DataTable: React.FC<DataTableProps> = ({ columns, rows, children }) => {
         {rows.map((row: any, idx: number) => (
           <Table.Row key={idx}>
             {columns.map((column: any, idx) => {
-              if (column.isCustom) {
-                const comp = Object.keys(children).length
-                  ? children
-                  : children.find((child: any) => child.props === column.props);
+              if (column.props === 'favorite') {
                 return (
-                  <Table.Cell key={`${comp.id}-${idx}`}>
-                    {comp.props && comp.props.children}
+                  <Table.Cell
+                    key={`${column.props}-${idx}`}
+                    style={column?.styles ? column.styles : {}}
+                  >
+                    <StarIcon fill="#000" />
+                    <StarFilledIcon fill="#000" />
                   </Table.Cell>
                 );
               }
+              if (
+                column.props === 'price_change_percentage_1h_in_currency' ||
+                column.props === 'price_change_percentage_24h_in_currency' ||
+                column.props === 'price_change_percentage_7d_in_currency'
+              ) {
+                return (
+                  <Table.Cell
+                    key={`${column.props}-${idx}`}
+                    className={[
+                      parseFloat(row[column.props]) >= 0
+                        ? 'text-red-600'
+                        : 'text-blue-600',
+                      'font-bold',
+                    ].join(' ')}
+                  >
+                    {row[column.props]}
+                  </Table.Cell>
+                );
+              }
+
               return (
-                <Table.Cell key={`${column.props}-${idx}`}>
+                <Table.Cell
+                  key={`${column.props}-${idx}`}
+                  style={column?.styles ? { ...column['styles'] } : {}}
+                >
                   {row[column.props]}
                 </Table.Cell>
               );
