@@ -1,10 +1,14 @@
 export function formatCurrency(value: number, currency: 'krw' | 'usd'): string {
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: currency.toUpperCase(),
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
+  console.log('formatCurrency', value, currency);
+  const formatter = new Intl.NumberFormat(
+    currency === 'krw' ? 'ko-KR' : 'en-US',
+    {
+      style: 'currency',
+      currency: currency.toUpperCase(),
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }
+  );
 
   return formatter.format(value);
 }

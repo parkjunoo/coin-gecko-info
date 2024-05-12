@@ -66,7 +66,11 @@ const CoinBorder: React.FC<CoinBorderProps> = ({}) => {
           };
         });
 
-        setCoinList([...coinList, ...filtered]);
+        if (searchParams.page === 1) {
+          setCoinList(filtered);
+        } else {
+          setCoinList([...coinList, ...filtered]);
+        }
         if (data.length < PAGE_SIZE) {
           setIsLastPage(true);
         }
@@ -96,7 +100,6 @@ const CoinBorder: React.FC<CoinBorderProps> = ({}) => {
               ...searchParams,
               page: searchParams.page + 1,
             });
-            refetch();
           }}
         >
           더보기

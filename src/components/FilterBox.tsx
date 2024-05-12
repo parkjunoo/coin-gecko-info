@@ -61,7 +61,7 @@ const FilterBox: React.FC<FilterBoxProps> = ({
       <Select.Root
         defaultValue={searchParams.vs_currency}
         onValueChange={(value) => {
-          setSearchParams({ ...searchParams, vs_currency: value });
+          setSearchParams({ ...searchParams, vs_currency: value, page: 1 });
         }}
       >
         <Select.Trigger />
